@@ -140,6 +140,7 @@ body {
     height: 30px;
     border: 1px solid lightgray;
     display: flex;
+    overflow: hidden;
 }
 
 .column-name {
@@ -171,7 +172,7 @@ body {
     width: calc(100vw - 30px);
     height: calc(75vh - 30px);
     border: 1px solid lightgray;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .cell-row {
@@ -189,6 +190,25 @@ body {
 
 .input-cell.selected {
     border: 2px solid #107c41;
+}
+
+.input-cell.top-cell-selected {
+    border-top: none;
+}
+
+
+/*Only bottom and right were given to input cell*/
+
+.input-cell.bottom-cell-selected {
+    border-bottom: 1px solid lightgray;
+}
+
+.input-cell.left-cell-selected {
+    border-left: none;
+}
+
+.input-cell.right-cell-selected {
+    border-right: 1px solid lightgray;
 }
 
 .sheet_bar {

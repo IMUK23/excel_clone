@@ -277,16 +277,26 @@ body {
 }
 
 .sheet-tab-container {
+    display: flex;
     border: 1px solid lightgray;
     width: calc(100vw -70px+40px);
 }
 
 .sheet-tab:hover {
-    cursor: default;
+    cursor: pointer;
+    background-color: lightgray;
 }
 
-.sheet-tab-container {
+.sheet-tab.selected:hover {
+    cursor: default;
+    background-color: white;
+}
+
+.sheet-tab.selected {
     border-bottom: 4px solid #0f703b;
+}
+
+.sheet-tab {
     padding-left: 10px;
     padding-right: 10px;
     width: 70px;

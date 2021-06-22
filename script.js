@@ -196,6 +196,16 @@ $(document).ready(function() {
     $(".input-cell").blur(function() {
 
         $(".input-cell.selected").attr("contenteditable", "false");
+
+        if ($(this).text() == "") {
+            updateCell("text", $(this).text(), true);
+        } else {
+            updateCell("text", $(this).text(), false);
+        }
+
+
+
+
     });
 
 
@@ -366,3 +376,98 @@ $(document).ready(function() {
 
 
 });
+/*Selected sheet is loaded*/
+function loadsheet() {
+    /*getting the data of selected sheet inside celldata */
+    let sheetinfo = cellData[selectedSheet];
+
+    /*Now as we have info of those cells that have value different than default
+    we iterate over those rows and columns and make them their value
+    */
+
+    for (let i of Object.keys(sheetinfo)) {
+        /*i-> rows  Iteration in rows */
+        for (let j of Object.keys(sheetinfo[i])) {
+            /*j-> columns in ith row */
+            /*Now get the value of this cell in cellinfo */
+            let cellinfo = sheetinfo[i][j];
+
+            $(`#input-cell-id-${i}-${j}`).text(cellinfo["text"]);
+            $(`#input-cell-id-${i}-${j}`).css("background-color", cellinfo["background-color"]);
+            $(`#input-cell-id-${i}-${j}`).css("color", cellinfo["color"]);
+            $(`#input-cell-id-${i}-${j}`).css("text-align", cellinfo["text-align"]);
+            $(`#input-cell-id-${i}-${j}`).css("font-weight", cellinfo["font-weight"]);
+            $(`#input-cell-id-${i}-${j}`).css("font-style", cellinfo["font-style"]);
+            $(`#input-cell-id-${i}-${j}`).css("text-decoration", cellinfo["text-decoration"]);
+            $(`#input-cell-id-${i}-${j}`).css("font-family", cellinfo["font-family"]);
+            $(`#input-cell-id-${i}-${j}`).css("font-size", cellinfo["font-size"]);
+
+
+
+        }
+    }
+
+
+}
+
+/* Clearing the sheet for addition of new sheet */
+function clearsheet() {
+    let sheetinfo = cellData[selectedSheet];
+
+    /*Now as we have info of those cells that have value different than default
+    we iterate over those rows and columns and make them default this won't affect the already saved sheet cell info
+    */
+
+    for (let i of Object.keys(sheetinfo)) {
+        /*i-> rows  Iteration in rows */
+        for (let j of Object.keys(sheetinfo[i])) {
+            /*j-> columns in ith row */
+            /*Now make this cell as default */
+            $(`#input-cell-id-${i}-${j}`).text("");
+            $(`#input-cell-id-${i}-${j}`).css("background-color", "#ffffff");
+            $(`#input-cell-id-${i}-${j}`).css("color", "#000000");
+            $(`#input-cell-id-${i}-${j}`).css("text-align", "left");
+            $(`#input-cell-id-${i}-${j}`).css("font-weight", "");
+            $(`#input-cell-id-${i}-${j}`).css("font-style", "");
+            $(`#input-cell-id-${i}-${j}`).css("text-decoration", "");
+            $(`#input-cell-id-${i}-${j}`).css("font-family", "Noto Sans");
+            $(`#input-cell-id-${i}-${j}`).css("font-size", 20);
+
+
+
+        }
+    }
+}
+
+
+$(".icon-add").click(function() {
+    clearsheet();
+    $(".sheet-tab").removeClass("selected");
+    let sheetname = "Sheet" + (totalSheet + 1);
+    totalSheet = totalSheet + 1;
+    cellData[sheetname] = {};
+    selectedSheet = sheetname;
+    $(".sheet-tab-container").append(`<div class="sheet-tab selected" id=#${sheetname}>${sheetname}</div>`);
+    $(".sheet-tab").click(function() {
+        if (!$(this).hasClass("selected")) {
+            selectsheet($(this));
+        }
+
+    });
+});
+
+
+$(".sheet-tab").click(function() {
+    if (!$(this).hasClass("selected")) {
+        selectsheet($(this));
+    }
+
+});
+
+function selectsheet(element) {
+    $(".sheet-tab.selected").removeClass("selected");
+    $(element).addClass("selected");
+    clearsheet();
+    selectedSheet = $(element).text();
+    loadsheet();
+}

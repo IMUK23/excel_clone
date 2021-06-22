@@ -81,6 +81,37 @@ body {
     width: 200px;
 }
 
+.icon-color-fill {
+    position: relative;
+}
+
+.input-cell-color {
+    border: none;
+    position: absolute;
+    width: 30px;
+    height: 12px;
+    padding: 0;
+    top: 30px;
+    left: 6px;
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.icon-color-text {
+    position: relative;
+}
+
+.input-cell-font-color {
+    border: none;
+    position: absolute;
+    width: 30px;
+    height: 12px;
+    padding: 0;
+    top: 30px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
 .selector {
     height: 80%;
     font-size: 18px;

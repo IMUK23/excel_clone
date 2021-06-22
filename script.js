@@ -4,8 +4,8 @@ let defaultproperties = {
     "font-style": "",
     "text-decoration": "",
     "text-align": "left",
-    "background-color": "white",
-    "color": "black",
+    "background-color": "#ffffff",
+    "color": "#000000",
     "font-family": "Noto Sans",
     "font-size": 20
 };
@@ -181,7 +181,8 @@ $(document).ready(function() {
         $(".font-family-selector").val(cellinfo["font-family"]);
         $(".font-size-selector").val(cellinfo["font-size"]);
 
-
+        $(".input-cell-color").val(cellinfo["background-color"]);
+        $(".input-cell-font-color").val(cellinfo["color"]);
     }
 
 
@@ -336,6 +337,32 @@ $(document).ready(function() {
     });
 
 
+
+    $(".color-fill-icon").click(function() {
+        $(".input-cell-color").click();
+    });
+
+    /*When the value of input cell color picker changes we need to update the cell property*/
+
+    $(".input-cell-color").change(function() {
+        if ($(this).val() == "#ffffff") {
+            updateCell("background-color", $(this).val(), true);
+        } else {
+            updateCell("background-color", $(this).val(), false);
+        }
+    });
+
+    $(".color-text-icon").click(function() {
+        $(".input-cell-font-color").click();
+    });
+
+    $(".input-cell-font-color").change(function() {
+        if ($(this).val() == "#000000") {
+            updateCell("color", $(this).val(), true);
+        } else {
+            updateCell("color", $(this).val(), false);
+        }
+    });
 
 
 });

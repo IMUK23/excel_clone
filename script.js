@@ -448,21 +448,35 @@ $(".icon-add").click(function() {
     cellData[sheetname] = {};
     selectedSheet = sheetname;
     $(".sheet-tab-container").append(`<div class="sheet-tab selected" id=#${sheetname}>${sheetname}</div>`);
+
+    addSheetEvent();
+});
+
+
+/*As there are multiple sheet even like left click right click so all are under one hood*/
+function addSheetEvent() {
     $(".sheet-tab").click(function() {
         if (!$(this).hasClass("selected")) {
             selectsheet($(this));
         }
 
     });
-});
+    $(".sheet-tab.selected").contextmenu(function(e) {
+        e.preventDefault();
 
+        /*When this contextmenu is triggered below sheetoption menu is appended on the container*/
+        $(".container").append('<div class="sheet-option-menu"> <div class="rename-menu">Rename </div> <div class="delete-menu">Delete </div>');
 
-$(".sheet-tab").click(function() {
-    if (!$(this).hasClass("selected")) {
-        selectsheet($(this));
-    }
+        /*Now setting the position of this sheet option menu according to event pagex and pagey value*/
 
-});
+        $(".sheet-option-menu").css("left", e.pageX + "px");
+
+    });
+
+}
+
+addSheetEvent();
+
 
 function selectsheet(element) {
     $(".sheet-tab.selected").removeClass("selected");

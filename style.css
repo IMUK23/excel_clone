@@ -10,6 +10,7 @@ body {
 
 .container {
     height: 100vh;
+    position: relative;
 }
 
 .title_bar,
@@ -304,4 +305,29 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: bold;
+}
+
+.sheet-option-menu {
+    position: absolute;
+    bottom: 4vh;
+    left: 50px;
+    background-color: white;
+    height: 60px;
+    width: 60px;
+    box-shadow: 0 0 3px 3px lightgray;
+}
+
+.rename-menu,
+.delete-menu {
+    height: 50%;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rename-menu:hover,
+.delete-menu:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }

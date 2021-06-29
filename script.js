@@ -461,19 +461,114 @@ function addSheetEvent() {
         }
 
     });
-    $(".sheet-tab.selected").contextmenu(function(e) {
+    $(".sheet-tab").contextmenu(function(e) {
         e.preventDefault();
+        $(".sheet-tab.selected").removeClass("selected");
+        $(this).addClass("selected");
+        selectedSheet=$(this).text();
+        /*When we click on the sheet-tab-selected context menu at that time sheep option existance is 0 but if we keep on clicking
+        it will increase so we only appending so that length remains only 1 not greater than that */
+       
+        if($(".sheet-option-menu").length == 1)
+{   $(".sheet-option-menu").remove();
 
         /*When this contextmenu is triggered below sheetoption menu is appended on the container*/
         $(".container").append('<div class="sheet-option-menu"> <div class="rename-menu">Rename </div> <div class="delete-menu">Delete </div>');
 
+        $(".rename-menu").click(function(){
+            $(".container").append(`<div class="sheet-rename-modal">
+            <h4 class="sheet-rename-modal-heading"> Rename Sheet To:</h4>
+            <input type="text" class="new-sheet-name" placeholder="sheetname" />
+                <div class="action-buttons">
+                    <div class="submit-button">Submit</div>
+                    <div class="cancel-button">Cancel</div>
+                </div>
+            
+            </div>`);
+            $(".cancel-button").click(function(){
+                $(".sheet-rename-modal").remove();
+            });
+
+            $(".submit-button").click(function(){
+                let currsheetname=selectedSheet;
+                let sheetdata=cellData[currsheetname];
+                let newname=$(".new-sheet-name").val();
+                if(newname==""){
+                    alert("Empty name can't be placed please give appropriate value");
+                }
+                else{
+                    delete cellData[selectedSheet];
+                    selectedSheet=newname;
+                    cellData[newname]=sheetdata;
+                    $(".sheet-tab.selected").html(newname);
+
+                }
+                $(".sheet-rename-modal").remove();
+            });
+
+        
+        });
+
+       
         /*Now setting the position of this sheet option menu according to event pagex and pagey value*/
 
-        $(".sheet-option-menu").css("left", e.pageX + "px");
+        $(".sheet-option-menu").css("left", e.pageX + "px");}
+    else if($(".sheet-option-menu").length == 0)
+    {
+            /*When this contextmenu is triggered below sheetoption menu is appended on the container*/
+            $(".container").append('<div class="sheet-option-menu"> <div class="rename-menu">Rename </div> <div class="delete-menu">Delete </div>');
+    
+            $(".rename-menu").click(function(){
+                $(".container").append(`<div class="sheet-rename-modal">
+                <h4 class="sheet-rename-modal-heading"> Rename Sheet To:</h4>
+                <input type="text" class="new-sheet-name" placeholder="sheetname" />
+                    <div class="action-buttons">
+                        <div class="submit-button">Submit</div>
+                        <div class="cancel-button">Cancel</div>
+                    </div>
+                
+                </div>`);
+                $(".cancel-button").click(function(){
+                    $(".sheet-rename-modal").remove();
+                });
+    
+                $(".submit-button").click(function(){
+                    let currsheetname=selectedSheet;
+                    let sheetdata=cellData[currsheetname];
+                    let newname=$(".new-sheet-name").val();
+                    if(newname==""){
+                        alert("Empty name can't be placed please give appropriate value");
+                    }
+                    else{
+                        delete cellData[selectedSheet];
+                        selectedSheet=newname;
+                        cellData[newname]=sheetdata;
+                        $(".sheet-tab.selected").html(newname);
+    
+                    }
+                    $(".sheet-rename-modal").remove();
+                });
+    
+            
+            });
+    
+           
+            /*Now setting the position of this sheet option menu according to event pagex and pagey value*/
+    
+            $(".sheet-option-menu").css("left", e.pageX + "px");}
 
+        else {
+        $(".sheet-option-menu").remove();
+    }    
+    console.log($(".sheet-option-menu").length)
     });
-
 }
+
+$(".container").click(function(){
+    $(".sheet-option-menu").remove();
+});
+    
+
 
 addSheetEvent();
 

@@ -331,3 +331,100 @@ body {
     background-color: lightgray;
     cursor: pointer;
 }
+
+.sheet-rename-modal {
+    position: absolute;
+    height: 180px;
+    width: 300px;
+    top: 40%;
+    left: 40%;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 0 3px 3px lightgray;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.sheet-rename-modal-heading {
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.new-sheet-name {
+    height: 26px;
+    font-size: 18px;
+    outline-color: #107c41;
+    margin-top: -20x;
+    margin-bottom: 5px;
+}
+
+.submit-button,
+.cancel-button {
+    font-size: 16px;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.submit-button {
+    background-color: #107c41;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #094926;
+}
+
+.cancel-button {
+    background-color: lightgray;
+}
+
+.cancel-button:hover {
+    background-color: gray;
+}
+
+.sheet-delete-modal {
+    position: absolute;
+    height: 110px;
+    width: 300px;
+    top: 40%;
+    left: 40%;
+    background-color: white;
+    box-shadow: 0 0 3px 3px lightgray;
+    text-align: center;
+}
+
+.delete-sheet-data {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.yes-button,
+.no-button {
+    font-size: 16px;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.yes-button {
+    background-color: #107c41;
+    color: white;
+}
+
+.yes-button:hover {
+    background-color: #094926;
+}
+
+.no-button {
+    background-color: lightgray;
+}
+
+.no-button:hover {
+    background-color: gray;
+}

@@ -512,7 +512,7 @@ function addSheetEvent() {
                 delete cellData[currsheetname];
                 currentsheetUI.remove();
 
-                alert(selectedSheet+" is deleted");
+                alert(currsheetname+" is deleted");
             }
             else{
                 alert("Cannot perform deletion on one sheet");
